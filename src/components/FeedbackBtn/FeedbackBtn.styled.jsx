@@ -8,6 +8,9 @@ export const Titel = styled.h2`
 `;
 
 export const ButtonDiv = styled.div`
+  padding: 8px;
+  border-radius: 18px;
+  width: 35%;
   margin-left: auto;
   margin-right: auto;
   margin-bottom: 50px;
@@ -15,7 +18,7 @@ export const ButtonDiv = styled.div`
   justify-content: center;
   flex-wrap: nowrap;
   font-weight: 400;
-
+  background-color: #d6daf1;
   gap: 10px;
 `;
 

@@ -1,24 +1,17 @@
 import { firstLetterUp } from 'tools/FirstLetterUp';
 import { Titel, ButtonDiv, Button } from './FeedbackBtn.styled';
-import PropTypes from 'prop-types';
 
-export const FeedbackBtn = ({ state, addFeedBack }) => {
-  const stateKeys = Object.keys(state);
+export const FeedbackBtn = ({ options, addFeedBack }) => {
   return (
     <>
       <Titel>Please leave feedback</Titel>
       <ButtonDiv>
-        {stateKeys.map(key => (
-          <Button key={key} onClick={() => addFeedBack(key)}>
-            {firstLetterUp(key)}
+        {options.map(option => (
+          <Button key={option} onClick={() => addFeedBack(option)}>
+            {firstLetterUp(option)}
           </Button>
         ))}
       </ButtonDiv>
     </>
   );
-};
-
-FeedbackBtn.propTypes = {
-  state: PropTypes.object.isRequired,
-  addFeedBack: PropTypes.func.isRequired,
 };
