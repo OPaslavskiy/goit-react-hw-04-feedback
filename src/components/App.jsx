@@ -4,7 +4,7 @@ import { GlobalStyle } from 'GlobalStyle';
 import { FeedbackBtn } from './FeedbackBtn/FeedbackBtn';
 import { Statistics } from './FeedbackStatistics/FeedbackStatistics';
 import { String } from './App.styled';
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import Notiflix from 'notiflix';
 Notiflix.Notify.init({
   width: '380px',
@@ -18,13 +18,16 @@ export const App = () => {
   const [good, setGood] = useState(0);
   const [neutral, setNeutral] = useState(0);
   const [bad, setBad] = useState(0);
-  const [total, setTotal] = useState(0);
-  const [percentage, setPercentage] = useState(0);
 
-  useEffect(() => {
-    setTotal(good + bad + neutral);
-    setPercentage(Math.round((good / total) * 100));
-  }, [good, bad, neutral, total]);
+  function totalFeedBack() {
+    const total = good + bad + neutral;
+    return total;
+  }
+
+  function percentageGood() {
+    const percentage = Math.round((good / (good + bad + neutral)) * 100);
+    return percentage;
+  }
 
   function addFeedBack(name) {
     switch (name) {
@@ -52,13 +55,13 @@ export const App = () => {
         options={['good', 'neutral', 'bad']}
         addFeedBack={addFeedBack}
       />
-      {total ? (
+      {totalFeedBack() ? (
         <Statistics
           good={good}
           neutral={neutral}
           bad={bad}
-          total={total}
-          percentage={percentage}
+          total={totalFeedBack()}
+          percentage={percentageGood()}
         />
       ) : (
         <String>No feedback given</String>
